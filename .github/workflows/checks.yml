@@ -13,6 +13,6 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
-      - run: gem install minitest --no-document
+      - run: gem install minitest -v '~> 5.0' --no-document
       - run: ruby test_client.rb
       - run: gem build bastion.gemspec
