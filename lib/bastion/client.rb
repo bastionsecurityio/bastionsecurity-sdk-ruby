@@ -22,7 +22,7 @@ module Bastion
   end
 
   class Client
-    DEFAULT_ENDPOINT = "https://api-production-761a5.up.railway.app/api/antibot"
+    DEFAULT_ENDPOINT = "https://api.bastionsecurity.io/api/antibot"
     def initialize(site_key:, secret:, endpoint: DEFAULT_ENDPOINT, timeout: 15, retries: 2)
       uri = URI(endpoint)
       unless uri.scheme == "https" || (uri.scheme == "http" && ["localhost", "127.0.0.1", "[::1]"].include?(uri.host))

@@ -15,7 +15,7 @@ begin
     output = { verified: true, event: JSON.parse(raw) }
   else
     raise ArgumentError, 'Usage: verify telemetry.json order.json | batch requests.json | challenge | webhook raw-body.json signature.txt' unless %w[verify batch challenge].include?(mode)
-    client = Bastion.new(site_key: ENV.fetch('BASTION_SITE_KEY'), secret: ENV.fetch('BASTION_SECRET_KEY'), endpoint: ENV.fetch('BASTION_ENDPOINT', 'https://api-production-761a5.up.railway.app/api/antibot'))
+    client = Bastion.new(site_key: ENV.fetch('BASTION_SITE_KEY'), secret: ENV.fetch('BASTION_SECRET_KEY'), endpoint: ENV.fetch('BASTION_ENDPOINT', 'https://api.bastionsecurity.io/api/antibot'))
     case mode
     when 'verify'
       raise ArgumentError, 'Usage: verify telemetry.json order.json' unless input && extra
