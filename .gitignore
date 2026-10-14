@@ -1,3 +1,18 @@
 *.gem
 Gemfile.lock
 pkg/
+
+# Local example credentials, customer data, and installed dependencies.
+.env
+**/.env
+.venv/
+__pycache__/
+vendor/
+node_modules/
+examples/browser-request.json
+examples/order.json
+examples/batch.json
+examples/delivery.json
+examples/signature.txt
+Gemfile.lock
+.bundle/

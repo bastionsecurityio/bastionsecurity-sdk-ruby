@@ -11,6 +11,6 @@ Gem::Specification.new do |s|
   s.files       = Dir["lib/**/*.rb"]
   s.required_ruby_version = ">= 3.0"
   s.metadata    = {
-    "source_code_uri" => "https://github.com/bastionsecurityio/sdk-ruby",
+    "source_code_uri" => "https://github.com/bastionsecurityio/bastionsecurity-sdk-ruby",
   }
 end

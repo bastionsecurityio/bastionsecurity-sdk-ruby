@@ -1,0 +1,9 @@
+{
+  "label": "Ruby",
+  "command": [
+    "bundle",
+    "exec",
+    "ruby",
+    "examples/cli.rb"
+  ]
+}
