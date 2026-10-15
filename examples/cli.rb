@@ -20,10 +20,10 @@ begin
     when 'verify'
       raise ArgumentError, 'Usage: verify telemetry.json order.json' unless input && extra
       telemetry, order = JSON.parse(File.read(input)), JSON.parse(File.read(extra))
-      raise ArgumentError, 'Complete buildRequest() telemetry with a stable idempotency_key is required' unless %w[token fingerprint idempotency_key].all? { |key| telemetry[key] && !telemetry[key].to_s.empty? }
+      raise ArgumentError, 'Complete buildRequest() telemetry with a stable idempotency_key is required' unless telemetry['idempotency_key'] && !telemetry['idempotency_key'].to_s.empty? && (telemetry['browser_receipt'] || %w[token fingerprint].all? { |key| telemetry[key] && !telemetry[key].to_s.empty? })
       amount = order['amount']
       raise ArgumentError, 'Trusted order needs customerId, paymentId, and a finite nonnegative amount' unless %w[customerId paymentId].all? { |key| order[key].is_a?(String) && !order[key].empty? } && amount.is_a?(Numeric) && amount.finite? && amount >= 0
-      request = telemetry.select { |key, _| %w[token fingerprint behavior environment idempotency_key].include?(key) }
+      request = telemetry.select { |key, _| %w[browser_receipt token fingerprint behavior environment idempotency_key].include?(key) }
       request['context'] = {event_type: 'checkout', account_id: order['customerId'], order_amount: amount, payment_hash: order['paymentId']}
       decision = client.verify(request)
       output = {allowed: decision['action'] == 'allow', decision: decision}
